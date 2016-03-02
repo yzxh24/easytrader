@@ -69,7 +69,8 @@ def recognize_verify_code(image_path, broker='ht'):
         if out_put.find('java version') != -1 or out_put.find('openjdk') != -1:
             out_put = getcmdout_func.getoutput(
                     'java -jar %s %s' % (
-                        os.path.join(os.path.dirname(__file__), 'thirdlibrary', verify_code_tool), image_path))
+                        os.path.split(os.path.realpath(__file__))[0] + str(os.sep) + str('thirdlibrary') + str(os.sep) + verify_code_tool,
+                        image_path))
             log.debug('recognize output: %s' % out_put)
             verify_code_start = -4
             return out_put[verify_code_start:]
